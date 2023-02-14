@@ -2,7 +2,7 @@ package com.keanetay.DepartmentStore.model
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.math.BigDecimal
-import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -16,7 +16,7 @@ class SalesItem(
         val description: String,
         val quantity: Long,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="MM/d/yyyy H:mm")
-        val invoiceDate: LocalDate,
+        val invoiceDate: LocalDateTime,
         val unitPrice: BigDecimal,
         val customerId: Long,
         val country: String
