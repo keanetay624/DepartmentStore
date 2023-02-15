@@ -12,8 +12,10 @@ interface SalesItemRepository : JpaRepository<SalesItem,Int> {
         TODO("Not yet implemented")
     }
 
-    @Query(value = "SELECT * FROM Sales_Item WHERE country like %?1%",
+    @Query(value = "SELECT * FROM Sales_Item WHERE (country ilike %?1% " +
+            "OR invoice_no ilike %?1% OR stock_code ilike %?1% " +
+            "OR description ilike %?1% OR quantity ilike %?1% " +
+            "OR unit_price ilike %?1% OR customer_id ilike %?1%)",
         nativeQuery = true)
     fun getSalesItemsBySearchStr(searchStr: String) : List<SalesItem>
-
 }
