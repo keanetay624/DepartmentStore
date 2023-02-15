@@ -25,4 +25,9 @@ class CSVService {
         }
         return list
     }
+
+    fun getSalesItems(searchStr: String): List<SalesItem> {
+        val list : List<SalesItem> = salesItemRepository.findAll()
+        return list
+    }
 }

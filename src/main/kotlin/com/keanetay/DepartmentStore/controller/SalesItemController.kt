@@ -26,4 +26,17 @@ class SalesItemController {
                 results = listOf<SalesItem>()) // not returning whole list otherwise payload is too large
             )
     }
+
+    @GetMapping
+    fun getSalesItems(
+        @RequestParam(name = "searchStr") searchStr:String,
+        @RequestParam(name = "limit") limit:String,
+        @RequestParam(name = "offset") offset:String) : ResponseEntity<ApiSuccess?>? {
+        val list: List<SalesItem> = csvService.getSalesItems(searchStr)
+        return ResponseEntity.status(HttpStatus.OK).body<ApiSuccess?>(
+            ApiSuccess(
+                message = "Get request success",
+                results = list)
+        )
+    }
 }
