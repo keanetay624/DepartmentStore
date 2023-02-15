@@ -32,7 +32,7 @@ class SalesItemController {
         @RequestParam(name = "searchStr") searchStr:String,
         @RequestParam(name = "limit") limit:String,
         @RequestParam(name = "offset") offset:String) : ResponseEntity<ApiSuccess?>? {
-        val list: List<SalesItem> = csvService.getSalesItems(searchStr)
+        val list: List<SalesItem> = csvService.getSalesItems(searchStr, limit, offset)
         return ResponseEntity.status(HttpStatus.OK).body<ApiSuccess?>(
             ApiSuccess(
                 message = "Get request success",
