@@ -27,12 +27,14 @@ class CSVService {
             list = file.inputStream.use { inputStream ->
                 CSVUtil.readCsv(inputStream)
             }
+            logger.info("---- CSVService - saveSalesItems: Saving to repo Start ----")
             salesItemRepository.saveAll(list)
+            logger.info("---- CSVService - saveSalesItems: Saving to repo End ----")
         } catch (e: IOException) {
             logger.info("---- CSVService - IOException ----")
             throw RuntimeException("fail to store csv data: " + e.message)
         }
-        logger.info("---- CSVService - saveSalesItems Start ----")
+        logger.info("---- CSVService - saveSalesItems End ----")
         return list
     }
 

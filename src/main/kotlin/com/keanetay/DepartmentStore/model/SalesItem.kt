@@ -6,10 +6,11 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-@Table
-class SalesItem(
+@Table(name = "Sales_Item")
+data class SalesItem(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "salesItemGen")
+    @SequenceGenerator(name = "salesItemGen", sequenceName = "salesItemSeq", initialValue = 1, allocationSize = 100)
     val id: Int,
     val invoiceNo: String? = null,
     val stockCode: String? = null,
