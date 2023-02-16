@@ -6,10 +6,25 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.context.request.WebRequest
+import java.time.format.DateTimeParseException
 import javax.validation.ConstraintViolationException
 
 @ControllerAdvice
 class RestExceptionHandler {
+
+    @ExceptionHandler(DateTimeParseException::class)
+    protected fun handleDateTimeParseException(
+        exception: DateTimeParseException,
+        request: WebRequest?
+    ): ResponseEntity<ApiError> {
+        val errorMessage =
+            ApiError(
+                status = HttpStatus.BAD_REQUEST,
+                message = "DateTimeParseException - " + exception.message,
+                cause = exception.cause
+            )
+        return ResponseEntity<ApiError>(errorMessage, HttpStatus.BAD_REQUEST)
+    }
     @ExceptionHandler(ConstraintViolationException::class)
     protected fun handleConstraintViolationException(
         exception: ConstraintViolationException,
