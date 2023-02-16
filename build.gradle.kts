@@ -36,6 +36,7 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.8.0")
 }
 
 tasks.withType<KotlinCompile> {
