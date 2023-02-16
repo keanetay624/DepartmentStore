@@ -1,25 +1,24 @@
 package com.keanetay.DepartmentStore.util
 
 import com.keanetay.DepartmentStore.model.SalesItem
+import mu.KotlinLogging
 import org.apache.commons.csv.CSVFormat
-import org.apache.commons.csv.CSVRecord
 import java.io.InputStream
-import java.math.BigDecimal
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 object CSVUtil {
     private const val PATTERN = "M/d/yyyy H:mm"
     private val formatter = DateTimeFormatter.ofPattern(PATTERN)
+    private val logger = KotlinLogging.logger {}
 
     fun readCsv(inputStream: InputStream): List<SalesItem> {
-        return CSVFormat.Builder
+        logger.info("---- CSVUtil - readCsv Start ----")
+        val salesItemList: List<SalesItem> = CSVFormat.Builder
             .create(CSVFormat.EXCEL)
             .build().parse(inputStream.reader())
             .drop(1) // Dropping the header
             .map {
-                printRecord(csvRecord = it)
-                println("next record")
                 SalesItem(
                     id = 0,
                     invoiceNo = it[0],
@@ -32,15 +31,7 @@ object CSVUtil {
                     country = it[7]
                 )
             }
-    }
-    fun printRecord(csvRecord: CSVRecord) {
-        println(csvRecord.get(0)) // invoiceNo
-        println(csvRecord.get(1)) // stockcode
-        println(csvRecord.get(2)) // description
-        println(csvRecord.get(3)) // quantity
-        println(csvRecord.get(4)) // invoiceDate
-        println(csvRecord.get(5)) // unitPrice
-        println(csvRecord.get(6)) // customerId
-        println(csvRecord.get(7)) // country
+        logger.info("---- CSVUtil - readCsv End ----")
+        return salesItemList
     }
 }
