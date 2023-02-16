@@ -11,13 +11,13 @@ class SalesItem(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int,
-    val invoiceNo: String,
-    val stockCode: String,
-    val description: String,
-    val quantity: Long,
+    val invoiceNo: String? = null,
+    val stockCode: String? = null,
+    val description: String? = null,
+    val quantity: Long? = null,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/d/yyyy H:mm")
-    val invoiceDate: LocalDateTime,
-    val unitPrice: BigDecimal,
-    val customerId: Long,
-    val country: String
+    val invoiceDate: LocalDateTime? = null,
+    val unitPrice: BigDecimal? = null,
+    val customerId: Long? = null,
+    val country: String? = null
 )

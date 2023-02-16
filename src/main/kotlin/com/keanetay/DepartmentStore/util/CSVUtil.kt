@@ -25,29 +25,14 @@ object CSVUtil {
                     invoiceNo = it[0],
                     stockCode = it[1],
                     description = it[2],
-                    quantity = castToLongIfNotEmpty(it[3]),
+                    quantity = it[3].toLongOrNull(),
                     invoiceDate = LocalDateTime.parse(it[4], formatter),
-                    unitPrice = castToBigDecimalIfNotEmpty(it[5]),
-                    customerId = castToLongIfNotEmpty(it[6]),
+                    unitPrice = it[5].toBigDecimalOrNull(),
+                    customerId = it[6].toLongOrNull(),
                     country = it[7]
                 )
             }
     }
-
-    fun castToLongIfNotEmpty(str: String): Long {
-        if (str.isNotEmpty()) {
-            return str.toLong()
-        }
-        return 0
-    }
-
-    fun castToBigDecimalIfNotEmpty(str: String): BigDecimal {
-        if (str.isNotEmpty()) {
-            return BigDecimal(str)
-        }
-        return BigDecimal(0)
-    }
-
     fun printRecord(csvRecord: CSVRecord) {
         println(csvRecord.get(0)) // invoiceNo
         println(csvRecord.get(1)) // stockcode
