@@ -15,28 +15,27 @@ import org.springframework.web.multipart.MultipartFile
 @Validated
 class SalesItemController {
     @Autowired
-    lateinit var csvService : CSVService
+    lateinit var csvService: CSVService
 
     @PostMapping("upload")
     fun uploadFile(@RequestParam("file") file: MultipartFile): ResponseEntity<ApiSuccess?>? {
-            csvService.saveSalesItems(file)
-            return ResponseEntity.status(HttpStatus.OK).body<ApiSuccess?>(
-                ApiSuccess(
+        csvService.saveSalesItems(file)
+        return ResponseEntity.status(HttpStatus.OK).body<ApiSuccess?>(
+            ApiSuccess(
                 message = "Uploaded Successfully: " + file.originalFilename,
-                results = listOf<SalesItem>()) // not returning whole list otherwise payload is too large
-            )
+                results = listOf<SalesItem>(),
+                totalSearchCount = 0
+            ) // not returning whole list otherwise payload is too large
+        )
     }
 
     @GetMapping
     fun getSalesItems(
-        @RequestParam(name = "searchStr") searchStr:String,
-        @RequestParam(name = "limit") limit:String,
-        @RequestParam(name = "offset") offset:String) : ResponseEntity<ApiSuccess?>? {
-        val list: List<SalesItem> = csvService.getSalesItems(searchStr, limit, offset)
-        return ResponseEntity.status(HttpStatus.OK).body<ApiSuccess?>(
-            ApiSuccess(
-                message = "Get request success",
-                results = list)
-        )
+        @RequestParam(name = "searchStr") searchStr: String,
+        @RequestParam(name = "limit") limit: Int,
+        @RequestParam(name = "offset") offset: Int
+    ): ResponseEntity<ApiSuccess?>? {
+        val successResponse: ApiSuccess = csvService.getSalesItems(searchStr, limit, offset)
+        return ResponseEntity.status(HttpStatus.OK).body<ApiSuccess?>(successResponse)
     }
 }
