@@ -19,5 +19,5 @@ interface SalesItemRepository : JpaRepository<SalesItem, Int> {
                 "OR unit_price ilike %?1% OR customer_id ilike %?1%)",
         nativeQuery = true
     )
-    fun getSalesItemsBySearchStr(searchStr: String, pageable:Pageable): Page<SalesItem>
+    fun getSalesItemsBySearchStr(searchStr: String, pageable: Pageable): Page<SalesItem>
 }
