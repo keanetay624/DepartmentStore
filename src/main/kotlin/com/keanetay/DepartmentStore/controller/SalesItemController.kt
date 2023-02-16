@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import javax.validation.constraints.Max
+import javax.validation.constraints.Min
 
 @RestController
 @RequestMapping("api/v1")
@@ -31,9 +33,9 @@ class SalesItemController {
 
     @GetMapping
     fun getSalesItems(
-        @RequestParam(name = "searchStr") searchStr: String,
-        @RequestParam(name = "limit") limit: Int,
-        @RequestParam(name = "offset") offset: Int
+        @RequestParam(name = "searchStr")  searchStr: String,
+        @RequestParam(name = "limit") @Max(50) @Min(0) limit: Int,
+        @RequestParam(name = "offset") @Min(0) offset: Int
     ): ResponseEntity<ApiSuccess?>? {
         val successResponse: ApiSuccess = csvService.getSalesItems(searchStr, limit, offset)
         return ResponseEntity.status(HttpStatus.OK).body<ApiSuccess?>(successResponse)

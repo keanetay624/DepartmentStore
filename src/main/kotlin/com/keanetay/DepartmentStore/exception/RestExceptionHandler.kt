@@ -5,18 +5,44 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
-import java.lang.IllegalArgumentException
+import org.springframework.web.context.request.WebRequest
+import javax.validation.ConstraintViolationException
 
 @ControllerAdvice
 class RestExceptionHandler {
+    @ExceptionHandler(ConstraintViolationException::class)
+    protected fun handleConstraintViolationException(
+        exception: ConstraintViolationException,
+        request: WebRequest?
+    ): ResponseEntity<ApiError> {
+        val errorMessage =
+            ApiError(
+                status = HttpStatus.BAD_REQUEST,
+                message = "ConstraintViolationException - " + exception.message,
+                cause = exception.cause
+            )
+        return ResponseEntity<ApiError>(errorMessage, HttpStatus.BAD_REQUEST)
+    }
+
     @ExceptionHandler
     fun handleIllegalArgumentException(ex: IllegalArgumentException): ResponseEntity<ApiError> {
-        val errorMessage = ex.message?.let {
+        val errorMessage =
             ApiError(
-                HttpStatus.BAD_REQUEST,
-                it
+                status = HttpStatus.BAD_REQUEST,
+                message = "IllegalArgumentException - " + ex.message,
+                cause = ex.cause
             )
-        }
+        return ResponseEntity<ApiError>(errorMessage, HttpStatus.BAD_REQUEST)
+    }
+
+    @ExceptionHandler
+    fun handleNumberFormatException(ex: NumberFormatException): ResponseEntity<ApiError> {
+        val errorMessage =
+            ApiError(
+                status = HttpStatus.BAD_REQUEST,
+                message = "NumberFormatException - " + ex.message,
+                cause = ex.cause
+            )
         return ResponseEntity<ApiError>(errorMessage, HttpStatus.BAD_REQUEST)
     }
 }
