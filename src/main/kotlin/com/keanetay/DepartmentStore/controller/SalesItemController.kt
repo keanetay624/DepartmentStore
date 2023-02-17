@@ -16,6 +16,7 @@ import javax.validation.constraints.Min
 @RestController
 @RequestMapping("api/v1")
 @Validated
+@CrossOrigin(origins = ["http://127.0.0.1:5173"])
 class SalesItemController {
     @Autowired
     lateinit var csvService: CSVService
