@@ -29,10 +29,14 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.apache.commons:commons-csv:1.10.0")
+	implementation("org.hibernate:hibernate-validator:8.0.0.Final")
+	implementation("io.github.microutils:kotlin-logging:3.0.5")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.8.0")
 }
 
 tasks.withType<KotlinCompile> {
