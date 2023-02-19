@@ -14,7 +14,7 @@ import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("item")
 @Validated
 @CrossOrigin(origins = ["http://127.0.0.1:5173"])
 class SalesItemController {
