@@ -1,8 +1,8 @@
-package com.keanetay.DepartmentStore.controller
+package com.keanetay.departmentStore.controller
 
-import com.keanetay.DepartmentStore.dto.ApiSuccess
-import com.keanetay.DepartmentStore.model.SalesItem
-import com.keanetay.DepartmentStore.service.SalesItemService
+import com.keanetay.departmentStore.dto.ApiSuccess
+import com.keanetay.departmentStore.model.SalesItem
+import com.keanetay.departmentStore.service.SalesItemService
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus

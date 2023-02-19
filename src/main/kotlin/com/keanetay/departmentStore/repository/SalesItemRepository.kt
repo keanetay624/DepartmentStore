@@ -1,6 +1,6 @@
-package com.keanetay.DepartmentStore.repository
+package com.keanetay.departmentStore.repository
 
-import com.keanetay.DepartmentStore.model.SalesItem
+import com.keanetay.departmentStore.model.SalesItem
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository

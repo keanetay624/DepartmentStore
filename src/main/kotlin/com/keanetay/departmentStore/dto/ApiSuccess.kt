@@ -1,9 +1,9 @@
-package com.keanetay.DepartmentStore.dto
+package com.keanetay.departmentStore.dto
 
-import com.keanetay.DepartmentStore.model.SalesItem
+import com.keanetay.departmentStore.model.SalesItem
 import org.springframework.http.HttpStatus
 
-class ApiSuccess(
+data class ApiSuccess(
         val status: HttpStatus = HttpStatus.OK,
         val message : String,
         val totalSearchCount: Long,

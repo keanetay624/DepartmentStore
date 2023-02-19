@@ -1,6 +1,6 @@
-package com.keanetay.DepartmentStore.util
+package com.keanetay.departmentStore.util
 
-import com.keanetay.DepartmentStore.model.SalesItem
+import com.keanetay.departmentStore.model.SalesItem
 import mu.KotlinLogging
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser

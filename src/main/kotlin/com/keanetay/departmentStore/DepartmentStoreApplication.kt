@@ -1,4 +1,4 @@
-package com.keanetay.DepartmentStore
+package com.keanetay.departmentStore
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

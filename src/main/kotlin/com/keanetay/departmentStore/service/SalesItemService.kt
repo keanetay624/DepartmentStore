@@ -1,9 +1,9 @@
-package com.keanetay.DepartmentStore.service
+package com.keanetay.departmentStore.service
 
-import com.keanetay.DepartmentStore.dto.ApiSuccess
-import com.keanetay.DepartmentStore.model.SalesItem
-import com.keanetay.DepartmentStore.repository.SalesItemRepository
-import com.keanetay.DepartmentStore.util.CSVUtil
+import com.keanetay.departmentStore.dto.ApiSuccess
+import com.keanetay.departmentStore.model.SalesItem
+import com.keanetay.departmentStore.repository.SalesItemRepository
+import com.keanetay.departmentStore.util.CSVUtil
 import mu.KotlinLogging
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest

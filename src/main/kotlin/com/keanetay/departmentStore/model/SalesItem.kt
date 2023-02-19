@@ -1,4 +1,4 @@
-package com.keanetay.DepartmentStore.model
+package com.keanetay.departmentStore.model
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.math.BigDecimal

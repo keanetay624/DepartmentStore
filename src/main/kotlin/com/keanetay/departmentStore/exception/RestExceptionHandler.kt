@@ -1,6 +1,6 @@
-package com.keanetay.DepartmentStore.exception
+package com.keanetay.departmentStore.exception
 
-import com.keanetay.DepartmentStore.dto.ApiError
+import com.keanetay.departmentStore.dto.ApiError
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -25,6 +25,7 @@ class RestExceptionHandler {
             )
         return ResponseEntity<ApiError>(errorMessage, HttpStatus.BAD_REQUEST)
     }
+
     @ExceptionHandler(ConstraintViolationException::class)
     protected fun handleConstraintViolationException(
         exception: ConstraintViolationException,
