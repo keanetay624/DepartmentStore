@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
 interface SalesItemRepository : JpaRepository<SalesItem, Int> {
+
     @Query(
         value = "SELECT * FROM Sales_Item WHERE (country ilike %?1% " +
                 "OR invoice_no ilike %?1% OR stock_code ilike %?1% " +

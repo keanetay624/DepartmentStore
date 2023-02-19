@@ -40,7 +40,7 @@ class SalesItemService(
         }
     }
 
-    fun getSalesItems(
+    fun findSalesItems(
         searchStr: String,
         limit: Int,
         offset: Int

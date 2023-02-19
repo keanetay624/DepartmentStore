@@ -37,13 +37,13 @@ class SalesItemController {
     }
 
     @GetMapping
-    fun getSalesItems(
+    fun findSalesItems(
         @RequestParam(name = "searchStr")  searchStr: String,
         @RequestParam(name = "limit") @Max(50) @Min(0) limit: Int,
         @RequestParam(name = "offset") @Min(0) offset: Int
     ): ResponseEntity<ApiSuccess?>? {
         logger.info("---- SalesItemController - getSalesItems Start ----")
-        val successResponse: ApiSuccess = salesItemService.getSalesItems(searchStr, limit, offset)
+        val successResponse: ApiSuccess = salesItemService.findSalesItems(searchStr, limit, offset)
         logger.info("---- SalesItemController - getSalesItems End ----")
         return ResponseEntity.status(HttpStatus.OK).body<ApiSuccess?>(successResponse)
     }
