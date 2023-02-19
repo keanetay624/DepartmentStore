@@ -1,7 +1,7 @@
 <h3 align="center">Sales Item Management Application</h3>
 
 <p align="center">
-  Web application designed to make managing sales-invoice-items for store managers simple, fun and easy to use.
+  Service, designed to make managing sales-invoice-items for store managers simple, fun and easy to use.
 </p>
 
 <!-- GETTING STARTED -->
