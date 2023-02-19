@@ -1,4 +1,4 @@
-package com.keanetay.DepartmentStore
+package com.keanetay.departmentStore
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

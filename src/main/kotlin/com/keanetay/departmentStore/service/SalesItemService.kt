@@ -1,11 +1,10 @@
-package com.keanetay.DepartmentStore.service
+package com.keanetay.departmentStore.service
 
-import com.keanetay.DepartmentStore.dto.ApiSuccess
-import com.keanetay.DepartmentStore.model.SalesItem
-import com.keanetay.DepartmentStore.repository.SalesItemRepository
-import com.keanetay.DepartmentStore.util.CSVUtil
+import com.keanetay.departmentStore.dto.ApiSuccess
+import com.keanetay.departmentStore.model.SalesItem
+import com.keanetay.departmentStore.repository.SalesItemRepository
+import com.keanetay.departmentStore.util.CSVUtil
 import mu.KotlinLogging
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -15,30 +14,33 @@ import org.springframework.web.multipart.MultipartFile
 import java.io.IOException
 
 @Service
-class CSVService {
-    @Autowired
-    lateinit var salesItemRepository: SalesItemRepository
+class SalesItemService(
+    private val salesItemRepository: SalesItemRepository // Constructor injection is recommended over field injection
+) {
+
     private val logger = KotlinLogging.logger {}
 
-    fun saveSalesItems(file: MultipartFile): List<SalesItem> {
-        logger.info("---- CSVService - saveSalesItems Start ----")
-        val list: List<SalesItem>
-        try {
-            list = file.inputStream.use { inputStream ->
-                CSVUtil.readCsv(inputStream)
-            }
-            logger.info("---- CSVService - saveSalesItems: Saving to repo Start ----")
-            salesItemRepository.saveAll(list)
-            logger.info("---- CSVService - saveSalesItems: Saving to repo End ----")
-        } catch (e: IOException) {
-            logger.info("---- CSVService - IOException ----")
-            throw RuntimeException("fail to store csv data: " + e.message)
-        }
-        logger.info("---- CSVService - saveSalesItems End ----")
-        return list
+    fun saveSalesItems(items: List<SalesItem>): List<SalesItem> {
+        return salesItemRepository.saveAll(items)
     }
 
-    fun getSalesItems(
+    fun saveSalesItems(file: MultipartFile): List<SalesItem> {
+        return saveSalesItems(
+            getSalesItemsFromFile(file)
+        )
+    }
+
+    private fun getSalesItemsFromFile(file: MultipartFile): List<SalesItem> {
+        try {
+            return file.inputStream.use { inputStream ->
+                CSVUtil.readCsv(inputStream)
+            }
+        } catch (e: IOException) {
+            throw RuntimeException("fail to store csv data: " + e.message, e)
+        }
+    }
+
+    fun findSalesItems(
         searchStr: String,
         limit: Int,
         offset: Int

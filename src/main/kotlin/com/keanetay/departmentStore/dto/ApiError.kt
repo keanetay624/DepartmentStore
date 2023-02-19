@@ -1,8 +1,8 @@
-package com.keanetay.DepartmentStore.dto
+package com.keanetay.departmentStore.dto
 
 import org.springframework.http.HttpStatus
 
-class ApiError(
+data class ApiError(
     val status: HttpStatus,
     val message: String?,
     val cause: Throwable?

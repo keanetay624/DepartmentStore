@@ -32,6 +32,7 @@ dependencies {
 	implementation("org.apache.commons:commons-csv:1.10.0")
 	implementation("org.hibernate:hibernate-validator:8.0.0.Final")
 	implementation("io.github.microutils:kotlin-logging:3.0.5")
+	implementation("ch.qos.logback:logback-classic:1.2.6")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")

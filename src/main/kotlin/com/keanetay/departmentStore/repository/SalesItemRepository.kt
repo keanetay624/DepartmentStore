@@ -1,12 +1,13 @@
-package com.keanetay.DepartmentStore.repository
+package com.keanetay.departmentStore.repository
 
-import com.keanetay.DepartmentStore.model.SalesItem
+import com.keanetay.departmentStore.model.SalesItem
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
 interface SalesItemRepository : JpaRepository<SalesItem, Int> {
+
     @Query(
         value = "SELECT * FROM Sales_Item WHERE (country ilike %?1% " +
                 "OR invoice_no ilike %?1% OR stock_code ilike %?1% " +

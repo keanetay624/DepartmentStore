@@ -1,4 +1,4 @@
-package com.keanetay.DepartmentStore.util
+package com.keanetay.departmentStore.util
 
 import org.junit.jupiter.api.Test
 
