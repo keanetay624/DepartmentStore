@@ -4,6 +4,9 @@
   Web application designed to make managing sales-invoice-items for store managers simple, fun and easy to use.
 </p>
 
+<!-- Table of Contents -->
+## Table of Contents
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
